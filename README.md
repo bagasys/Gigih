@@ -1,3 +1,2 @@
 # Generasi GIGIH #1
-Nama: Bagas Yanuar Sudrajad
-Id: GBE01028
+Bagas Yanuar Sudrajad - GBE01028
