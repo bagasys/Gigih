@@ -21,7 +21,7 @@ class Category
 
   def self.get_category_by_id(id)
     client = create_db_client
-    raw_data = client.query("SELECT * FROM categories WHERE id=#{id} LIMIT 1")
+    raw_data = client.query("SELECT * FROM categories WHERE id=#{id}")
     category = nil
     raw_data.each do |data|
       category = Category.new(data["id"], data["name"])

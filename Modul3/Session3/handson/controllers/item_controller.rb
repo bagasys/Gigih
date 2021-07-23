@@ -23,7 +23,7 @@ class ItemController
     item.save
   end
 
-  def create_item_form
+  def new_item
     categories = Category::get_all_categories
     renderer = ERB.new(File.read("./views/items_new.erb"))
     renderer.result(binding)
