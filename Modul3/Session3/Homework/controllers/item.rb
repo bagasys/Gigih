@@ -21,8 +21,8 @@ class ItemController
   def create_item(params)
     id = nil
     categories = []
-    categories_ids = []
-    params["categories_ids"].each do |category_id|
+    categories_ids = params["categories_ids"] ? params["categories_ids"] : []
+    categories_ids.each do |category_id|
       category = Category::get_category_by_id(category_id.to_i)
       categories << category
     end
@@ -50,7 +50,8 @@ class ItemController
     name = params["name"]
     price = params["price"]
     categories = []
-    params["categories_ids"].each do |category_id|
+    categories_ids = params["categories_ids"] ? params["categories_ids"] : [] 
+    categories_ids.each do |category_id|
       category = Category::get_category_by_id(category_id.to_i)
       categories << category
     end

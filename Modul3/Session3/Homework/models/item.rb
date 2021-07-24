@@ -29,11 +29,16 @@ class Item
     client.query(
       "DELETE FROM items_categories WHERE item_id=#{@id}"
     )
-
-    @categories.each do |category|
-      client.query(
-        "INSERT INTO items_categories (item_id, category_id) VALUES (#{@id}, #{category.id})"
-      )
+    
+    if @categories.length > 0
+      query_text = "INSERT INTO items_categories (item_id, category_id) VALUES" 
+      @categories.each_with_index do |category, index|
+        query_text += " (#{@id}, #{category.id})"
+        if index < @categories.length - 1
+          query_text += ","
+        end
+      end
+      client.query(query_text)
     end
   end
 
@@ -44,10 +49,16 @@ class Item
       "INSERT INTO items (name, price) VALUES ('#{@name}', #{@price})"
     )
     @id = client.last_id
-    @categories.each do |category|
-      client.query(
-        "INSERT INTO items_categories (item_id, category_id) VALUES (#{@id}, #{category.id})"
-      )
+
+    if @categories.length > 0
+      query_text = "INSERT INTO items_categories (item_id, category_id) VALUES"
+      @categories.each_with_index do |category, index|
+        query_text += " (#{@id}, #{category.id})"
+        if index < @categories.length - 1
+          query_text += ","
+        end
+      end
+      client.query(query_text)
     end
   end
 
