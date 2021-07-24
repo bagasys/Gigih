@@ -61,6 +61,9 @@ class Category
     return false unless valid?
     client = create_db_client
     client.query(
+      "DELETE FROM items_categories WHERE category_id=#{@id}"
+    )
+    client.query(
       "DELETE FROM categories WHERE id=#{@id}"
     )
   end

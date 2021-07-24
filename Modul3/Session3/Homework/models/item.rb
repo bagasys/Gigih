@@ -14,6 +14,11 @@ class Item
   def delete
     return false unless valid?
     client = create_db_client
+
+    client.query(
+      "DELETE FROM items_categories WHERE item_id=#{@id}"
+    )
+
     client.query(
       "DELETE FROM items WHERE id=#{@id}"
     )
