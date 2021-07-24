@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <title>Document</title>
+</head>
+<body>
+  <nav>
+    <div class="nav-wrapper container">
+      <a href="#" class="brand-logo">bagasys</a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li><a href="/items">Items</a></li>
+        <li><a href="/categories">Categories</a></li>
+      </ul>
+    </div>
+  </nav>
+  
+  <div class="container">
+    <div class="row">
+      <div class="col s6">
+        <h3>List Of Items</h3>
+      </div>
+      <div class="col s6">
+        <a
+          href="/items/new"
+          style="margin-top: 5%"
+          class="waves-effect waves-light btn">
+          <i class="material-icons left">add</i>New Item
+        </a>
+      </div>
+    </div>
+
+    <form class="col s12" action="/items" method="GET">
+      <div class="row">
+        <div class="col s6">
+          <label>Category</label>
+          <select class="browser-default" name="category_id">
+            <option value="" selected>Select item's category</option>
+            <% categories.each do |category| %>
+            <option value="<%= category.id %>"><%= category.name %></option>
+            <% end %>
+          </select>
+        </div>
+        <div class="col s6">
+          <button
+            style="margin: 30px"
+           class="btn waves-effect waves-light col6" type="submit">Filter Result
+            <i class="material-icons right">search</i>
+          </button>
+        </div>
+      </div>
+
+    </form>
+
+
+
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Price</th>
+          <th>Category</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% items.each do |item| %>
+          <tr>
+            <td><%= item.name%></td>
+            <td><%= item.price %></td>
+            <td>
+              <% item.categories.each do |category| %>
+                <%= category.name %> <br>
+              <% end %>
+            </td>
+            <td>
+              <a href="/items/<%=item.id%>/show" class="waves-effect waves-light btn blue"><i class="material-icons left">visibility</i></a>
+              <a href="/items/<%=item.id%>/edit" class="waves-effect waves-light btn"><i class="material-icons left">edit</i></a>
+              <form style="display: inline-block" action="/items/<%=item.id%>/delete" method="POST" id="form1">
+                <button 
+                class="waves-effect waves-light btn red"
+                type="submit"
+              ><i class="material-icons left">delete</i></button>
+              </form>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script>
+
+  </script>
+</body>
+</html>
