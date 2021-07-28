@@ -1,7 +1,8 @@
 class ArrayIncrementer
   def increment(arr)
     newArr = arr
-    i = arr.length - 1
+    n = arr.length
+    i = n - 1
     sisa = 1
     
     while i >= 0 && sisa == 1
