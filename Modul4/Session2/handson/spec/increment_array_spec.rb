@@ -33,4 +33,15 @@ RSpec.describe ArrayIncrementer do
     # then
     expect(incremented_arr).to eq ([1, 2])
   end
+
+  it 'increments two digits of 9s' do
+    # given
+    ai = ArrayIncrementer.new()
+
+    #when
+    incremented_arr = ai.increment([9, 9])
+
+    # then
+    expect(incremented_arr).to eq ([1, 0, 0])
+  end
 end
