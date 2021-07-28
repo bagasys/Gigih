@@ -4,9 +4,8 @@ class ArrayIncrementer
     n = arr.length
 
     if n < 1
-      return arr
+      return [0]
     end
-
 
     i = n - 1
     sisa = 1
