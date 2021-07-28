@@ -2,6 +2,12 @@ class ArrayIncrementer
   def increment(arr)
     newArr = arr
     n = arr.length
+
+    if n < 1
+      return arr
+    end
+
+
     i = n - 1
     sisa = 1
     
