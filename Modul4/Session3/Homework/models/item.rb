@@ -97,9 +97,10 @@ class Item
       categories: categories
     })
     item
+    
   end
 
-  def self.find_all(params)
+  def self.find_all
     client = create_db_client
     rows = client.query("SELECT i.id ,i.name, i.price FROM items AS i LEFT JOIN items_categories AS i_c ON i.id = i_c.item_id GROUP BY i.id")
     client.close
@@ -134,5 +135,4 @@ class Item
     end
     items
   end
-
 end

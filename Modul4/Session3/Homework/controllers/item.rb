@@ -78,6 +78,5 @@ class ItemController
   def delete(params)
     id = params["id"]
     item = Item::find_by_id(id)
-    item.delete
   end
 end
