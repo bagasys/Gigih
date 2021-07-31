@@ -3,6 +3,8 @@ require_relative "../db/mysql_connector"
 class Category
   attr_reader :id
   attr_accessor :name
+  
+
   def initialize(params)
     @id = params[:id]
     @name = params[:name]
