@@ -84,6 +84,7 @@ class Category
     client = create_db_client
     
     raw_data = client.query("SELECT c.name AS 'category_name', c.id AS 'category_id' FROM items AS i LEFT JOIN items_categories AS i_c ON i.id = i_c.item_id LEFT JOIN categories AS c ON c.id = i_c.category_id WHERE i.id=#{item_id}")
+    client.close
     categories = []
     raw_data.each do |data|
       category = Category.new({

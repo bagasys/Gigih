@@ -89,13 +89,15 @@ describe Item do
       query2 = "DELETE FROM items_categories WHERE item_id=#{item.id}"
       query3 = "INSERT INTO items_categories (item_id, category_id) VALUES (#{item.id}, #{category1.id}), (#{item.id}, #{category2.id})"
       
+      
       client = double
       expect(client).to receive(:query).with(query1)
       expect(client).to receive(:query).with(query2)
       expect(client).to receive(:query).with(query3)
       expect(client).to receive(:close)
+      
       allow(Mysql2::Client).to receive(:new).and_return(client)
-
+      
       item.update()
     end
   end
