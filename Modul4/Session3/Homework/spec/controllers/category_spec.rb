@@ -91,10 +91,7 @@ describe CategoryController do
 
   describe "new_form" do
     it "s" do
-      
-
       renderer = ERB.new(File.read("./views/categories/new.erb"))
-
       controller = CategoryController.new
       expect(controller.new_form()).to eq renderer.result
     end

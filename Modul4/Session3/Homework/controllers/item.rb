@@ -7,9 +7,7 @@ class ItemController
     if params["category_id"] && params["category_id"] != ""
       items = Item::find_by_category_id(params["category_id"])
     else
-      items = Item::find_all({
-        category_id: params["category_id"] != "" ? params["category_id"] : nil 
-      })
+      items = Item::find_all()
     end
     
     categories = Category::find_all
@@ -78,5 +76,6 @@ class ItemController
   def delete(params)
     id = params["id"]
     item = Item::find_by_id(id)
+    item.delete
   end
 end
